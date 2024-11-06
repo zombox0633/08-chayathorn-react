@@ -9,7 +9,7 @@ function ButtonNavigate({ name, path }: ButtonNavigatePropsType) {
   const navigate = useNavigate();
 
   return (
-    <button type="button" onClick={() => navigate(`${path}`)}>
+    <button type="button" className="btn-df" onClick={() => navigate(`${path}`)}>
       {name}
     </button>
   );

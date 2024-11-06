@@ -11,16 +11,35 @@
     @apply min-h-screen bg-white;
   }
 
-  h1{
-    @apply text-5xl font-bold
+  h1 {
+    @apply text-5xl font-bold;
   }
 
-  input{
-    @apply h-14 p-2 border-2
+  p {
+    @apply text-sm;
   }
 
-  button{
-    @apply  bg-black text-white w-32  text-base py-4 px-6 font-bold transition-all
-    hover:cursor-pointer hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0
+  input {
+    @apply h-14 p-2 border-2;
+  }
+
+  table {
+    @apply w-full text-left table-auto border;
+  }
+
+  th,
+  td {
+    @apply p-4 border-b;
+  }
+}
+
+@layer components {
+  .btn-df {
+    @apply bg-black text-white w-32  text-base py-4 px-6 font-bold transition-all
+    hover:cursor-pointer hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0;
+  }
+
+  .btn-table {
+    @apply text-sm font-medium;
   }
 }
