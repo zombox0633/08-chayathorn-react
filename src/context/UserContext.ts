@@ -12,4 +12,9 @@ export type UserContextType = {
   setUser: React.Dispatch<React.SetStateAction<UserDataType[]>>;
 };
 
-export const UserContext = createContext<UserContextType | null>(null);
+export const UserContext = createContext<UserContextType>({
+  user: [],
+  setUser: () => {
+    throw new Error("setUser function must be overridden");
+  },
+});
