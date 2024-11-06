@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import ButtonNavigate from "../components/ButtonNavigate";
 import HeaderSection from "../components/HeaderSection";
+import UserCreationForm from "../components/UserCreationForm";
+import TableUserData from "../components/TableUserData";
 
 function AdminPage() {
+  const { user, setUser } = useContext(UserContext);
   return (
     <main className=" flex flex-col items-center justify-evenly w-full min-h-screen py-16 px-8">
       <HeaderSection />
@@ -9,14 +14,11 @@ function AdminPage() {
         <ButtonNavigate name={"Home"} path={"/"} />
         <ButtonNavigate name={"User"} path={"/user"} />
       </div>
-      <form className=" flex justify-center">
-        <div className=" flex gap-x-2 p-4 border-2">
-          <input id="first-name" type="text" placeholder="First name" />
-          <input id="last-name" type="text" placeholder="Last name" />
-          <input id="position" type="text" placeholder="Position" />
-          <button>Save</button>
-        </div>
-      </form>
+      <div>
+        <h3 className="mb-2 text-xl font-bold">Create User</h3>
+        <UserCreationForm setUser={setUser} />
+      </div>
+      <TableUserData user={user} setUser={setUser} />
     </main>
   );
 }
