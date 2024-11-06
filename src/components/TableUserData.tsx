@@ -1,12 +1,13 @@
-import { UserDataType } from "../context/UserContext";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 type TableUserDataPropsType = {
-  user: UserDataType[];
-  setUser: React.Dispatch<React.SetStateAction<UserDataType[]>>;
+  status: "Action" | "User";
 };
 
-function TableUserData({ user, setUser }: TableUserDataPropsType) {
-  const headerTable = ["First Name", "Last Name", "Position", "Action"];
+function TableUserData({ status }: TableUserDataPropsType) {
+  const { user, setUser } = useContext(UserContext);
+  const headerTable = ["First Name", "Last Name", "Position"];
   const isUser = user.length > 0;
 
   const handleDelete = (id: string) => {
@@ -23,6 +24,11 @@ function TableUserData({ user, setUser }: TableUserDataPropsType) {
               <p>{header}</p>
             </th>
           ))}
+          {status === "Action" && (
+            <th>
+              <p>Action</p>
+            </th>
+          )}
         </tr>
       </thead>
       <tbody>
@@ -38,17 +44,19 @@ function TableUserData({ user, setUser }: TableUserDataPropsType) {
               <td>
                 <p>{item.position}</p>
               </td>
-              <td>
-                <div className="flex gap-x-6 ">
-                  {/* <button className="btn-table">Edit</button> */}
-                  <button
-                    className="btn-table"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
+              {status === "Action" && (
+                <td>
+                  <div className="flex gap-x-6 ">
+                    {/* <button className="btn-table">Edit</button> */}
+                    <button
+                      className="btn-table"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              )}
             </tr>
           ))
         ) : (
@@ -58,6 +66,11 @@ function TableUserData({ user, setUser }: TableUserDataPropsType) {
                 <p>-</p>
               </td>
             ))}
+            {status === "Action" && (
+              <td>
+                <p>-</p>
+              </td>
+            )}
           </tr>
         )}
       </tbody>

@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import { UserDataType } from "../context/UserContext";
-
-type UserCreationFormPropsType = {
-  setUser: React.Dispatch<React.SetStateAction<UserDataType[]>>;
-};
+import React, { useContext, useState } from "react";
+import { UserContext, UserDataType } from "../context/UserContext";
 
 type InputUserDataType = {
   firstName: string;
@@ -11,7 +7,8 @@ type InputUserDataType = {
   position: string;
 };
 
-function UserCreationForm({ setUser }: UserCreationFormPropsType) {
+function UserCreationForm() {
+  const { setUser } = useContext(UserContext);
   const [inputUserData, setInputData] = useState<InputUserDataType>({
     firstName: "",
     lastName: "",
@@ -71,7 +68,9 @@ function UserCreationForm({ setUser }: UserCreationFormPropsType) {
           required
           onChange={handleInputUser}
         />
-        <button type="submit" className="btn-df">Save</button>
+        <button type="submit" className="btn-df">
+          Save
+        </button>
       </div>
     </form>
   );
