@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 type TableUserDataPropsType = {
-  status: "Action" | "User";
+  status: "Admin" | "User";
 };
 
 function TableUserData({ status }: TableUserDataPropsType) {
@@ -24,7 +24,7 @@ function TableUserData({ status }: TableUserDataPropsType) {
               <p>{header}</p>
             </th>
           ))}
-          {status === "Action" && (
+          {status === "Admin" && (
             <th>
               <p>Action</p>
             </th>
@@ -44,7 +44,7 @@ function TableUserData({ status }: TableUserDataPropsType) {
               <td>
                 <p>{item.position}</p>
               </td>
-              {status === "Action" && (
+              {status === "Admin" && (
                 <td>
                   <div className="flex gap-x-6 ">
                     {/* <button className="btn-table">Edit</button> */}
@@ -66,7 +66,7 @@ function TableUserData({ status }: TableUserDataPropsType) {
                 <p>-</p>
               </td>
             ))}
-            {status === "Action" && (
+            {status === "Admin" && (
               <td>
                 <p>-</p>
               </td>

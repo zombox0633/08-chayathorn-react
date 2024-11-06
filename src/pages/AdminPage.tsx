@@ -16,7 +16,7 @@ function AdminPage() {
         <h3 className="mb-2 text-xl font-bold">Create User</h3>
         <UserCreationForm />
       </div>
-      <TableUserData status="Action" />
+      <TableUserData status="Admin" />
     </main>
   );
 }
