@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext, UserDataType } from "../context/UserContext";
 
 type InputUserDataType = {
@@ -28,9 +28,9 @@ function UserCreationForm() {
 
     const newUserData: UserDataType = {
       id: crypto.randomUUID(),
-      firstName: inputUserData.firstName,
-      lastName: inputUserData.lastName,
-      position: inputUserData.position,
+      firstName: inputUserData.firstName.trim(),
+      lastName: inputUserData.lastName.trim(),
+      position: inputUserData.position.trim(),
     };
 
     setUser((prev) => [...prev, newUserData]);

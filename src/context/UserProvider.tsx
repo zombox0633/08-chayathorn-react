@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import { UserContext, UserDataType } from "./UserContext";
 
 export type ContextProviderPropsType = {
@@ -6,7 +6,19 @@ export type ContextProviderPropsType = {
 };
 
 export const UserProvider = ({ children }: ContextProviderPropsType) => {
-  const [user, setUser] = useState<UserDataType[]>([]);
+  const [user, setUser] = useState<UserDataType[]>(() => {
+    try {
+      const storedData = localStorage.getItem("user");
+      return storedData ? JSON.parse(storedData) : [];
+    } catch (error) {
+      console.error("Error parsing localStorage data: ", error);
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   const value = useMemo(
     () => ({
